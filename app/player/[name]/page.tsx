@@ -32,7 +32,9 @@ async function CachedPlayerBreakdown({ name, fanImage }: { name: string; fanImag
   return <PlayerBreakdown score={entry.score} rank={entry.rank} fanImage={fanImage} />
 }
 
-async function PlayerPageContent({ params, fanImage }: Props & { fanImage: string }) {
+async function PlayerPageContent({ params }: Props) {
+  await connection()
+  const fanImage = FAN_IMAGES[Math.floor(Math.random() * FAN_IMAGES.length)]
   const { name } = await params
   const displayName = decodeURIComponent(name)
   return <CachedPlayerBreakdown name={displayName} fanImage={fanImage} />
@@ -62,12 +64,10 @@ function PlayerSkeleton() {
   )
 }
 
-export default async function PlayerPage({ params }: Props) {
-  await connection()
-  const fanImage = FAN_IMAGES[Math.floor(Math.random() * FAN_IMAGES.length)]
+export default function PlayerPage({ params }: Props) {
   return (
     <Suspense fallback={<PlayerSkeleton />}>
-      <PlayerPageContent params={params} fanImage={fanImage} />
+      <PlayerPageContent params={params} />
     </Suspense>
   )
 }

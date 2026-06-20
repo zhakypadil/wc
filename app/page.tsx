@@ -6,7 +6,7 @@ import LeaderboardTable from '@/components/LeaderboardTable'
 
 const CROWD_IMAGES = ['/images/crowd.jpg', '/images/crowd2.jpg']
 
-async function LiveLeaderboard({ heroImage }: { heroImage: string }) {
+async function CachedLeaderboard({ heroImage }: { heroImage: string }) {
   'use cache'
   cacheTag('leaderboard')
   cacheLife({ revalidate: 60 })
@@ -24,6 +24,12 @@ async function LiveLeaderboard({ heroImage }: { heroImage: string }) {
       heroImage={heroImage}
     />
   )
+}
+
+async function LiveLeaderboard() {
+  await connection()
+  const heroImage = CROWD_IMAGES[Math.floor(Math.random() * CROWD_IMAGES.length)]
+  return <CachedLeaderboard heroImage={heroImage} />
 }
 
 function LeaderboardSkeleton() {
@@ -50,13 +56,11 @@ function LeaderboardSkeleton() {
   )
 }
 
-export default async function HomePage() {
-  await connection()
-  const heroImage = CROWD_IMAGES[Math.floor(Math.random() * CROWD_IMAGES.length)]
+export default function HomePage() {
   return (
     <main>
       <Suspense fallback={<LeaderboardSkeleton />}>
-        <LiveLeaderboard heroImage={heroImage} />
+        <LiveLeaderboard />
       </Suspense>
     </main>
   )
