@@ -1,0 +1,355 @@
+{
+  "groupMatches": [
+    {
+      "homeTeam": "Mexico",
+      "awayTeam": "South Africa",
+      "homeGoals": 2,
+      "awayGoals": 0,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "South Korea",
+      "awayTeam": "Czech Republic",
+      "homeGoals": 2,
+      "awayGoals": 1,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Canada",
+      "awayTeam": "Bosnia-Herzegovina",
+      "homeGoals": 1,
+      "awayGoals": 1,
+      "outcome": "X",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "USA",
+      "awayTeam": "Paraguay",
+      "homeGoals": 4,
+      "awayGoals": 1,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Qatar",
+      "awayTeam": "Switzerland",
+      "homeGoals": 1,
+      "awayGoals": 1,
+      "outcome": "X",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Brazil",
+      "awayTeam": "Morocco",
+      "homeGoals": 1,
+      "awayGoals": 1,
+      "outcome": "X",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Haiti",
+      "awayTeam": "Scotland",
+      "homeGoals": 0,
+      "awayGoals": 1,
+      "outcome": "2",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Australia",
+      "awayTeam": "Turkey",
+      "homeGoals": 2,
+      "awayGoals": 0,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Germany",
+      "awayTeam": "Curaçao",
+      "homeGoals": 7,
+      "awayGoals": 1,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Netherlands",
+      "awayTeam": "Japan",
+      "homeGoals": 2,
+      "awayGoals": 2,
+      "outcome": "X",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Ivory Coast",
+      "awayTeam": "Ecuador",
+      "homeGoals": 1,
+      "awayGoals": 0,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Sweden",
+      "awayTeam": "Tunisia",
+      "homeGoals": 5,
+      "awayGoals": 1,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Spain",
+      "awayTeam": "Cape Verde",
+      "homeGoals": 0,
+      "awayGoals": 0,
+      "outcome": "X",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Belgium",
+      "awayTeam": "Egypt",
+      "homeGoals": 1,
+      "awayGoals": 1,
+      "outcome": "X",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Saudi Arabia",
+      "awayTeam": "Uruguay",
+      "homeGoals": 1,
+      "awayGoals": 1,
+      "outcome": "X",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Iran",
+      "awayTeam": "New Zealand",
+      "homeGoals": 2,
+      "awayGoals": 2,
+      "outcome": "X",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "France",
+      "awayTeam": "Senegal",
+      "homeGoals": 3,
+      "awayGoals": 1,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Iraq",
+      "awayTeam": "Norway",
+      "homeGoals": 1,
+      "awayGoals": 4,
+      "outcome": "2",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Argentina",
+      "awayTeam": "Algeria",
+      "homeGoals": 3,
+      "awayGoals": 0,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Austria",
+      "awayTeam": "Jordan",
+      "homeGoals": 3,
+      "awayGoals": 1,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Portugal",
+      "awayTeam": "DR Congo",
+      "homeGoals": 1,
+      "awayGoals": 1,
+      "outcome": "X",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "England",
+      "awayTeam": "Croatia",
+      "homeGoals": 4,
+      "awayGoals": 2,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Ghana",
+      "awayTeam": "Panama",
+      "homeGoals": 1,
+      "awayGoals": 0,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Uzbekistan",
+      "awayTeam": "Colombia",
+      "homeGoals": 1,
+      "awayGoals": 3,
+      "outcome": "2",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Czech Republic",
+      "awayTeam": "South Africa",
+      "homeGoals": 1,
+      "awayGoals": 1,
+      "outcome": "X",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Switzerland",
+      "awayTeam": "Bosnia-Herzegovina",
+      "homeGoals": 4,
+      "awayGoals": 1,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Canada",
+      "awayTeam": "Qatar",
+      "homeGoals": 6,
+      "awayGoals": 0,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Mexico",
+      "awayTeam": "South Korea",
+      "homeGoals": 1,
+      "awayGoals": 0,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "USA",
+      "awayTeam": "Australia",
+      "homeGoals": 2,
+      "awayGoals": 0,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Scotland",
+      "awayTeam": "Morocco",
+      "homeGoals": 0,
+      "awayGoals": 1,
+      "outcome": "2",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Brazil",
+      "awayTeam": "Haiti",
+      "homeGoals": 3,
+      "awayGoals": 0,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Turkey",
+      "awayTeam": "Paraguay",
+      "homeGoals": 0,
+      "awayGoals": 1,
+      "outcome": "2",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    }
+  ],
+  "knockout": {
+    "roundOf32": {
+      "teams": [],
+      "resolved": false
+    },
+    "roundOf16": {
+      "teams": [],
+      "resolved": false
+    },
+    "quarterFinal": {
+      "teams": [],
+      "resolved": false
+    },
+    "semiFinal": {
+      "teams": [],
+      "resolved": false
+    },
+    "final": {
+      "teams": [],
+      "resolved": false
+    },
+    "winner": {
+      "teams": [],
+      "resolved": false
+    },
+    "thirdPlace": {
+      "teams": [],
+      "resolved": false
+    }
+  },
+  "finalScore": null
+}
