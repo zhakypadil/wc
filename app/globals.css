@@ -1,23 +1,53 @@
 @import "tailwindcss";
 
-/* ─── World Cup theme tokens ─────────────────────────────────────────────── */
 @theme inline {
-  --font-sans: var(--font-geist);
-
-  --color-wc-dark:  #0d1117;
-  --color-wc-green: #1a7340;
-  --color-wc-gold:  #c9a227;
-
-  --color-background: var(--color-wc-dark);
-  --color-foreground: #f0f0f0;
+  --color-cream:  #F6F1E5;
+  --color-navy:   #101826;
+  --color-gold:   #F2B705;
+  --color-pink:   #E5197B;
+  --color-green:  #10A14A;
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  background: var(--color-wc-dark);
-  color: var(--color-foreground);
-  font-family: var(--font-sans, system-ui, sans-serif);
+  background: #F6F1E5;
+  color: #101826;
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(-16px) rotate(0deg);   opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translateY(220px) rotate(480deg); opacity: 0; }
+}
+
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .45; }
+}
+
+/* ─── Podium card hover ───────────────────────────────────────────────────── */
+.podium-link {
+  display: block;
+  transition: transform .24s cubic-bezier(.34,1.56,.64,1);
+  will-change: transform;
+}
+.podium-link:hover { transform: translateY(-10px); }
+
+/* ─── Standings row hover ─────────────────────────────────────────────────── */
+.standings-link {
+  display: block;
+  transition: transform .14s ease;
+  will-change: transform;
+}
+.standings-link:hover { transform: translateX(6px); }
+
+.standings-row {
+  transition: background .14s ease, box-shadow .14s ease;
+}
+.standings-link:hover .standings-row {
+  background: #fff !important;
+  box-shadow: 0 3px 20px rgba(16,24,38,.09);
 }

@@ -319,6 +319,16 @@
       "finished": true,
       "round": "Group Stage",
       "fixtureId": 0
+    },
+    {
+      "homeTeam": "Netherlands",
+      "awayTeam": "Sweden",
+      "homeGoals": 5,
+      "awayGoals": 1,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
     }
   ],
   "knockout": {

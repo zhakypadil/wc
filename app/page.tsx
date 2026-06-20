@@ -1,9 +1,12 @@
 import { Suspense } from 'react'
+import { connection } from 'next/server'
 import { cacheLife, cacheTag } from 'next/cache'
 import { getLeaderboard, getLiveResults } from '@/lib/data'
 import LeaderboardTable from '@/components/LeaderboardTable'
 
-async function LiveLeaderboard() {
+const CROWD_IMAGES = ['/images/crowd.jpg', '/images/crowd2.jpg']
+
+async function LiveLeaderboard({ heroImage }: { heroImage: string }) {
   'use cache'
   cacheTag('leaderboard')
   cacheLife({ revalidate: 60 })
@@ -18,46 +21,43 @@ async function LiveLeaderboard() {
       entries={entries}
       lastUpdated={results.lastUpdated}
       source={results.source}
+      heroImage={heroImage}
     />
   )
 }
 
 function LeaderboardSkeleton() {
   return (
-    <div className="space-y-2 animate-pulse">
-      {Array.from({ length: 6 }).map((_, i) => (
-        <div key={i} className="h-12 rounded-xl bg-white/5" />
-      ))}
+    <div style={{ background: '#F6F1E5', minHeight: '100vh' }}>
+      {/* Hero skeleton */}
+      <div style={{ minHeight: '84vh', background: 'linear-gradient(180deg, #0B1428 0%, #1A2B4A 50%, #0B1428 100%)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 'clamp(40px,6vw,76px) clamp(20px,5vw,64px)' }}>
+        <div style={{ width: 220, height: 20, borderRadius: 8, background: 'rgba(255,255,255,.12)', marginBottom: 16, animation: 'skeletonPulse 1.5s ease-in-out infinite' }} />
+        <div style={{ width: '60%', height: 80, borderRadius: 12, background: 'rgba(255,255,255,.1)', marginBottom: 24, animation: 'skeletonPulse 1.5s ease-in-out infinite' }} />
+        <div style={{ display: 'flex', gap: 10 }}>
+          {[1, 2, 3].map(i => <div key={i} style={{ width: 110, height: 46, borderRadius: 14, background: 'rgba(255,255,255,.08)', animation: 'skeletonPulse 1.5s ease-in-out infinite' }} />)}
+        </div>
+      </div>
+      {/* Standings skeleton */}
+      <div style={{ maxWidth: 1040, margin: '0 auto', padding: 'clamp(44px,6vw,84px) clamp(20px,5vw,40px)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16, marginBottom: 48 }}>
+          {[1, 2, 3].map(i => <div key={i} style={{ height: 240, borderRadius: 20, background: '#EAE3D3', animation: 'skeletonPulse 1.5s ease-in-out infinite' }} />)}
+        </div>
+        {Array.from({ length: 8 }).map((_, i) => (
+          <div key={i} style={{ height: 72, borderRadius: 14, background: '#EAE3D3', marginBottom: 4, animation: 'skeletonPulse 1.5s ease-in-out infinite', opacity: 1 - i * 0.07 }} />
+        ))}
+      </div>
     </div>
   )
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  await connection()
+  const heroImage = CROWD_IMAGES[Math.floor(Math.random() * CROWD_IMAGES.length)]
   return (
-    <main className="min-h-screen bg-wc-dark text-white">
-      {/* Hero banner */}
-      <div className="relative overflow-hidden bg-gradient-to-b from-wc-green/40 via-wc-dark to-wc-dark pt-10 pb-8 px-4">
-        <div className="absolute top-0 left-1/4 w-64 h-64 rounded-full bg-wc-gold/5 blur-3xl pointer-events-none" />
-        <div className="absolute top-0 right-1/4 w-48 h-48 rounded-full bg-wc-green/10 blur-3xl pointer-events-none" />
-
-        <div className="relative max-w-2xl mx-auto text-center">
-          <div className="text-5xl mb-2">🏆</div>
-          <h1 className="text-3xl sm:text-4xl font-black tracking-tight">
-            World Cup 2026
-          </h1>
-          <p className="text-wc-gold font-bold text-lg mt-1">Prediction Leaderboard</p>
-          <p className="text-white/40 text-sm mt-2">
-            Live standings among friends · Auto-updates every minute
-          </p>
-        </div>
-      </div>
-
-      {/* Leaderboard */}
-      <div className="max-w-2xl mx-auto px-4 py-6">
-        <Suspense fallback={<LeaderboardSkeleton />}>
-          <LiveLeaderboard />
-        </Suspense>
-      </div>
+    <main>
+      <Suspense fallback={<LeaderboardSkeleton />}>
+        <LiveLeaderboard heroImage={heroImage} />
+      </Suspense>
     </main>
   )
 }

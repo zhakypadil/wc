@@ -1,83 +1,73 @@
 import { Suspense } from 'react'
+import { connection } from 'next/server'
 import { cacheLife, cacheTag } from 'next/cache'
 import Link from 'next/link'
-import { getPlayerScore } from '@/lib/data'
+import { getLeaderboard } from '@/lib/data'
 import PlayerBreakdown from '@/components/PlayerBreakdown'
 
 interface Props {
   params: Promise<{ name: string }>
 }
 
-// ── Cached per-player data ────────────────────────────────────────────────────
-async function CachedPlayerBreakdown({ name }: { name: string }) {
+const FAN_IMAGES = ['/images/fan.jpg', '/images/fan2.jpg']
+
+async function CachedPlayerBreakdown({ name, fanImage }: { name: string; fanImage: string }) {
   'use cache'
   cacheTag('leaderboard', `player:${name}`)
   cacheLife({ revalidate: 60 })
 
-  const score = await getPlayerScore(name)
-  if (!score) {
+  const entries = await getLeaderboard()
+  const entry = entries.find(e => e.score.name.toLowerCase() === name.toLowerCase())
+
+  if (!entry) {
     return (
-      <div className="text-center py-16">
-        <div className="text-5xl mb-3">🤷</div>
-        <p className="text-white/60">
-          Player <strong>{name}</strong> not found.
-        </p>
-        <Link href="/" className="mt-4 inline-block text-wc-gold hover:underline text-sm">
-          Back to leaderboard
-        </Link>
+      <div style={{ minHeight: '100vh', background: '#F6F1E5', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, fontFamily: "'Archivo', sans-serif" }}>
+        <div style={{ fontSize: 64 }}>🤷</div>
+        <p style={{ color: '#6B7482', fontSize: 16 }}>Player <strong style={{ color: '#101826' }}>{name}</strong> not found.</p>
+        <Link href="/" style={{ color: '#E5197B', fontWeight: 700, textDecoration: 'none', fontSize: 14 }}>← Back to leaderboard</Link>
       </div>
     )
   }
-  return <PlayerBreakdown score={score} />
+
+  return <PlayerBreakdown score={entry.score} rank={entry.rank} fanImage={fanImage} />
 }
 
-// ── Runtime wrapper (accesses params → lives inside Suspense) ─────────────────
-async function PlayerPageContent({ params }: Props) {
+async function PlayerPageContent({ params, fanImage }: Props & { fanImage: string }) {
   const { name } = await params
   const displayName = decodeURIComponent(name)
+  return <CachedPlayerBreakdown name={displayName} fanImage={fanImage} />
+}
 
+function PlayerSkeleton() {
   return (
-    <>
-      <div className="mb-6 px-4 pt-6 max-w-2xl mx-auto">
-        <h1 className="text-2xl font-black">{displayName}</h1>
-        <p className="text-white/40 text-sm mt-1">Prediction breakdown</p>
+    <div style={{ background: '#F6F1E5', minHeight: '100vh' }}>
+      {/* Header skeleton with fan image */}
+      <div style={{ position: 'relative', minHeight: '42vh', overflow: 'hidden' }}>
+        <img src="/images/fan.jpg" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 25%', opacity: .7 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(8,18,38,.6) 0%, rgba(8,18,38,.85) 100%)' }} />
+        <div style={{ position: 'relative', padding: '24px clamp(20px,5vw,48px)' }}>
+          <Link href="/" style={{ color: 'rgba(255,255,255,.75)', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>← Leaderboard</Link>
+        </div>
       </div>
-      <div className="max-w-2xl mx-auto px-4 pb-10">
-        <CachedPlayerBreakdown name={displayName} />
+      {/* Content skeleton */}
+      <div style={{ maxWidth: 900, margin: '0 auto', padding: 'clamp(28px,4vw,48px) clamp(20px,5vw,40px)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16, marginBottom: 32 }}>
+          {[1, 2, 3].map(i => (
+            <div key={i} style={{ height: 108, borderRadius: 18, background: '#EAE3D3', animation: 'skeletonPulse 1.5s ease-in-out infinite' }} />
+          ))}
+        </div>
+        <div style={{ height: 240, borderRadius: 18, background: '#EAE3D3', animation: 'skeletonPulse 1.5s ease-in-out infinite' }} />
       </div>
-    </>
+    </div>
   )
 }
 
-// ── Page shell (fully static) ─────────────────────────────────────────────────
-export default function PlayerPage({ params }: Props) {
+export default async function PlayerPage({ params }: Props) {
+  await connection()
+  const fanImage = FAN_IMAGES[Math.floor(Math.random() * FAN_IMAGES.length)]
   return (
-    <main className="min-h-screen bg-wc-dark text-white">
-      {/* Static header */}
-      <div className="bg-gradient-to-b from-wc-green/30 to-wc-dark pt-8 pb-4 px-4">
-        <div className="max-w-2xl mx-auto">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1 text-sm text-white/50 hover:text-white transition-colors"
-          >
-            ← Leaderboard
-          </Link>
-        </div>
-      </div>
-
-      {/* Dynamic content inside Suspense */}
-      <Suspense
-        fallback={
-          <div className="max-w-2xl mx-auto px-4 py-8 space-y-4 animate-pulse">
-            <div className="h-8 w-40 rounded-lg bg-white/10" />
-            <div className="h-4 w-24 rounded-lg bg-white/5" />
-            <div className="h-28 rounded-xl bg-white/5" />
-            <div className="h-64 rounded-xl bg-white/5" />
-          </div>
-        }
-      >
-        <PlayerPageContent params={params} />
-      </Suspense>
-    </main>
+    <Suspense fallback={<PlayerSkeleton />}>
+      <PlayerPageContent params={params} fanImage={fanImage} />
+    </Suspense>
   )
 }
