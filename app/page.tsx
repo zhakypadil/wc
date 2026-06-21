@@ -7,9 +7,9 @@ import LeaderboardTable from '@/components/LeaderboardTable'
 const CROWD_IMAGES = ['/images/crowd.jpg', '/images/crowd2.jpg']
 
 async function CachedLeaderboard({ heroImage }: { heroImage: string }) {
-  'use cache'
+  'use cache: remote'
   cacheTag('leaderboard')
-  cacheLife({ revalidate: 60 })
+  cacheLife({ revalidate: 3600 })
 
   const [entries, results] = await Promise.all([
     getLeaderboard(),

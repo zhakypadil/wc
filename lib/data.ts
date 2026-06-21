@@ -7,11 +7,11 @@ import { computeLeaderboard, computePlayerScore } from './scorer'
 import type { PlayerPredictions, LiveResults, LeaderboardEntry, PlayerScore } from './types'
 
 const PREDICTIONS_DIR = path.join(process.cwd(), 'data', 'predictions')
-const RESULTS_REVALIDATE = 60
+const RESULTS_REVALIDATE = 3600
 
 // ─── Predictions ──────────────────────────────────────────────────────────────
 export async function getAllPredictions(): Promise<PlayerPredictions[]> {
-  'use cache'
+  'use cache: remote'
   cacheTag('predictions')
   cacheLife('hours')
 
@@ -34,7 +34,7 @@ export async function getAllPredictions(): Promise<PlayerPredictions[]> {
 
 // ─── Live results ─────────────────────────────────────────────────────────────
 export async function getLiveResults(): Promise<LiveResults> {
-  'use cache'
+  'use cache: remote'
   cacheTag('results')
   cacheLife({ revalidate: RESULTS_REVALIDATE })
 
@@ -43,7 +43,7 @@ export async function getLiveResults(): Promise<LiveResults> {
 
 // ─── Leaderboard ──────────────────────────────────────────────────────────────
 export async function getLeaderboard(): Promise<LeaderboardEntry[]> {
-  'use cache'
+  'use cache: remote'
   cacheTag('leaderboard')
   cacheLife({ revalidate: RESULTS_REVALIDATE })
 
@@ -56,7 +56,7 @@ export async function getLeaderboard(): Promise<LeaderboardEntry[]> {
 
 // ─── Single player ────────────────────────────────────────────────────────────
 export async function getPlayerScore(name: string): Promise<PlayerScore | null> {
-  'use cache'
+  'use cache: remote'
   cacheTag('leaderboard', `player:${name}`)
   cacheLife({ revalidate: RESULTS_REVALIDATE })
 

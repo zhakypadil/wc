@@ -12,9 +12,9 @@ interface Props {
 const FAN_IMAGES = ['/images/fan.jpg', '/images/fan2.jpg']
 
 async function CachedPlayerBreakdown({ name, fanImage }: { name: string; fanImage: string }) {
-  'use cache'
+  'use cache: remote'
   cacheTag('leaderboard', `player:${name}`)
-  cacheLife({ revalidate: 60 })
+  cacheLife({ revalidate: 3600 })
 
   const entries = await getLeaderboard()
   const entry = entries.find(e => e.score.name.toLowerCase() === name.toLowerCase())
