@@ -51,3 +51,12 @@ body {
   background: #fff !important;
   box-shadow: 0 3px 20px rgba(16,24,38,.09);
 }
+
+/* ─── Standings mobile layout ─────────────────────────────────────────────── */
+@media (max-width: 540px) {
+  .standings-scroll { overflow-x: visible !important; }
+  .standings-min    { min-width: 0 !important; }
+  .standings-grid   { grid-template-columns: 44px 1fr 80px !important; }
+  .standings-col-grp,
+  .standings-col-ko { display: none !important; }
+}

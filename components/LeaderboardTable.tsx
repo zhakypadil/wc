@@ -178,16 +178,16 @@ export default function LeaderboardTable({
           <span style={{ fontSize: 13, fontWeight: 600, color: '#8A93A1', letterSpacing: '.04em' }}>{entries.length} managers · sorted by total points</span>
         </div>
 
-        <div style={{ overflowX: 'auto' }}>
+        <div className="standings-scroll" style={{ overflowX: 'auto' }}>
           {/* Table header */}
-          <div style={{ display: 'grid', gridTemplateColumns: '54px 1fr 78px 78px 92px', gap: 14, padding: '0 18px 12px', borderBottom: '2px solid #101826', minWidth: 460 }}>
+          <div className="standings-min standings-grid" style={{ display: 'grid', gridTemplateColumns: '54px 1fr 78px 78px 92px', gap: 14, padding: '0 18px 12px', borderBottom: '2px solid #101826', minWidth: 460 }}>
             {(['Pos', 'Manager', 'Group', 'Knockout', 'Total'] as const).map((h, i) => (
-              <span key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.12em', textTransform: S.upper, color: '#8A93A1', textAlign: i >= 2 ? (i === 4 ? S.right : S.center) : S.left }}>{h}</span>
+              <span key={h} className={i === 2 ? 'standings-col-grp' : i === 3 ? 'standings-col-ko' : ''} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.12em', textTransform: S.upper, color: '#8A93A1', textAlign: i >= 2 ? (i === 4 ? S.right : S.center) : S.left }}>{h}</span>
             ))}
           </div>
 
           {/* Rows */}
-          <div style={{ display: 'flex', flexDirection: 'column', minWidth: 460 }}>
+          <div className="standings-min" style={{ display: 'flex', flexDirection: 'column', minWidth: 460 }}>
             {entries.map(({ rank, score }) => {
               const top = rank <= 3
               const mc = MEDAL_COLORS[rank - 1]
@@ -200,16 +200,16 @@ export default function LeaderboardTable({
                     border: `1px solid ${top ? '#EFE8D8' : 'transparent'}`,
                     borderLeft: `4px solid ${top ? mc! : 'transparent'}`,
                   }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '54px 1fr 78px 78px 92px', gap: 14, alignItems: 'center' }}>
+                    <div className="standings-grid" style={{ display: 'grid', gridTemplateColumns: '54px 1fr 78px 78px 92px', gap: 14, alignItems: 'center' }}>
                       <span style={{ fontFamily: S.anton, fontSize: 21, color: top ? '#101826' : '#AEB5C0', lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>{String(rank).padStart(2, '0')}</span>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 12, minWidth: 0 }}>
                         <div style={{ width: 38, height: 38, flexShrink: 0, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 13, background: top ? mc! : '#ECE6D8', color: top ? (rank === 1 ? '#1A1205' : '#2B3445') : '#6B7482' }}>{ini}</div>
                         <span style={{ fontWeight: 700, fontSize: 'clamp(13px,1.7vw,16px)', color: '#101826', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{score.name}</span>
                       </div>
-                      <div style={{ justifySelf: S.center }}>
+                      <div className="standings-col-grp" style={{ justifySelf: S.center }}>
                         <span style={{ fontVariantNumeric: 'tabular-nums', background: '#EAF7EF', color: '#0C7C3E', fontWeight: 700, fontSize: 13, padding: '4px 10px', borderRadius: 7 }}>{score.groupPoints}</span>
                       </div>
-                      <div style={{ justifySelf: S.center }}>
+                      <div className="standings-col-ko" style={{ justifySelf: S.center }}>
                         <span style={{ fontVariantNumeric: 'tabular-nums', background: '#FFF4D6', color: '#9A6B00', fontWeight: 700, fontSize: 13, padding: '4px 10px', borderRadius: 7 }}>{score.knockoutPoints}</span>
                       </div>
                       <div style={{ justifySelf: 'end' }}>
