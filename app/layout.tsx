@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Anton, Archivo } from 'next/font/google'
 import './globals.css'
+import SiuTrigger from '@/components/SiuTrigger'
 
 const anton = Anton({ weight: '400', subsets: ['latin'], variable: '--font-anton' })
 const archivo = Archivo({ subsets: ['latin'], variable: '--font-archivo' })
@@ -15,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${anton.variable} ${archivo.variable}`}>
       <body style={{ fontFamily: "var(--font-archivo, 'Archivo', sans-serif)" }}>
         {children}
+        <SiuTrigger />
       </body>
     </html>
   )

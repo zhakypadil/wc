@@ -52,6 +52,46 @@ body {
   box-shadow: 0 3px 20px rgba(16,24,38,.09);
 }
 
+/* ─── SiuTrigger animations ───────────────────────────────────────────────── */
+@keyframes siuRise {
+  0%   { transform: translateY(72vh) scale(.5) rotate(-8deg); opacity: 0; }
+  46%  { transform: translateY(-3.5vh) scale(1.08) rotate(3deg); opacity: 1; }
+  64%  { transform: translateY(1.6vh) scale(.975) rotate(-1.6deg); }
+  80%  { transform: translateY(-.6vh) scale(1.015) rotate(.6deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); opacity: 1; }
+}
+@keyframes siuExit {
+  0%   { transform: translateY(0) scale(1) rotate(0); opacity: 1; }
+  100% { transform: translateY(-34vh) scale(.62) rotate(12deg); opacity: 0; }
+}
+@keyframes siuGlowPop {
+  0%   { transform: translate(-50%,-50%) scale(.25); opacity: 0; }
+  28%  { opacity: .95; }
+  100% { transform: translate(-50%,-50%) scale(1.85); opacity: 0; }
+}
+@keyframes siuWordPop {
+  0%   { transform: scale(2.6); opacity: 0; }
+  44%  { transform: scale(.86); opacity: 1; }
+  62%  { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes siuConfetti {
+  0%   { transform: translate(0,0) rotate(0); opacity: 1; }
+  100% { transform: translate(var(--cx),var(--cy)) rotate(var(--cr)); opacity: 0; }
+}
+@keyframes siuSpotSpin {
+  0%   { transform: translate(-50%,-50%) rotate(0); }
+  100% { transform: translate(-50%,-50%) rotate(360deg); }
+}
+@keyframes siuBadgeIn {
+  0%   { transform: translateY(16px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes siuFlashIn {
+  0%   { opacity: .5; }
+  100% { opacity: 0; }
+}
+
 /* ─── Standings mobile layout ─────────────────────────────────────────────── */
 @media (max-width: 540px) {
   .standings-scroll { overflow-x: visible !important; }

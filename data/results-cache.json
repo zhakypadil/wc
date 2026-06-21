@@ -329,6 +329,46 @@
       "finished": true,
       "round": "Group Stage",
       "fixtureId": 0
+    },
+    {
+      "homeTeam": "Germany",
+      "awayTeam": "Ivory Coast",
+      "homeGoals": 2,
+      "awayGoals": 1,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Ecuador",
+      "awayTeam": "Curaçao",
+      "homeGoals": 0,
+      "awayGoals": 0,
+      "outcome": "X",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Tunisia",
+      "awayTeam": "Japan",
+      "homeGoals": 0,
+      "awayGoals": 4,
+      "outcome": "2",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
+    },
+    {
+      "homeTeam": "Spain",
+      "awayTeam": "Saudi Arabia",
+      "homeGoals": 4,
+      "awayGoals": 0,
+      "outcome": "1",
+      "finished": true,
+      "round": "Group Stage",
+      "fixtureId": 0
     }
   ],
   "knockout": {
